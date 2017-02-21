@@ -42,7 +42,7 @@ def disconnect(request, backend, association_id=None):
 def _do_login(backend, user, social_user):
     user.backend = '{0}.{1}'.format(backend.__module__,
                                   backend.__class__.__name__)
-    login(backend.strategy.request, user)
+    login(backend.strategy.request, user, 'django.contrib.auth.backends.ModelBackend')
     if backend.setting('SESSION_EXPIRATION', False):
         # Set session expiration date if present and enabled
         # by setting. Use last social-auth instance for current
